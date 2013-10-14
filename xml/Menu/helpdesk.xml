@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<menu>
+  <item>
+    <path>civicrm/helpdesk</path>
+    <page_callback>CRM_Helpdesk_Page_Activity_Helpdesk</page_callback>
+    <title>Activity_Helpdesk</title>
+    <access_arguments>access CiviCRM</access_arguments>
+  </item>
+</menu>

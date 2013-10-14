@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<extension key="eu.tttp.helpdesk" type="module">
+  <file>helpdesk</file>
+  <name>Helpdesk system to make it easier for a team to handle email requests</name>
+  <description>Instead of a "completed" incoming email, requests are handled as activities (of type requests)that the team can assign to someone specific or use a template to reply to</description>
+  <license>aGPL3</license>
+  <maintainer>
+    <author>xavier</author>
+    <email>civi@tttp.eu</email>
+  </maintainer>
+  <releaseDate>2013-10-14</releaseDate>
+  <version>1.0</version>
+  <develStage>beta</develStage>
+  <compatibility>
+    <ver>4.3</ver>
+    <ver>4.4</ver>
+  </compatibility>
+  <civix>
+    <namespace>CRM/Helpdesk</namespace>
+  </civix>
+</extension>
