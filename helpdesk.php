@@ -4,7 +4,7 @@ require_once 'helpdesk.civix.php';
 
 
 function helpdesk_civicrm_pre( $op, $objectName, $id, &$params ) {
-  if ("create" != $op || "activity" != $objectName)
+  if ("create" != $op || "Activity" != $objectName)
     return;
   
   $inbound = civicrm_api('OptionValue', 'getsingle', 
