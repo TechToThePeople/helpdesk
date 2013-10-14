@@ -9,8 +9,7 @@ class CRM_Helpdesk_Page_Activity_Helpdesk extends CRM_Core_Page {
 
   $hd = civicrm_api('OptionValue', 'getsingle', array ('version' => 3,'sequential' => 1,'name' => 'helpdesk'));
 
-  $activities = civicrm_api('Activity', 'get', array ('version' => 3,'sequential' => 1,'option.limit'=>500, 'activity_type_id=$hd["value]");
-print_r($activities);
+  $activities = civicrm_api('Activity', 'get', array ('version' => 3,'sequential' => 1,'option.limit'=>500, 'activity_type_id'=>$hd["value"]));
 
     $this->assign('activities', $activities);
 
