@@ -2,6 +2,21 @@
 
 require_once 'helpdesk.civix.php';
 
+
+function helpdesk_civicrm_pre( $op, $objectName, $id, &$params ) {
+  if ("create" != $op || "activity" != $objectName)
+    return;
+  
+  $inbound = civicrm_api('OptionValue', 'getsingle', 
+    array ('version' => 3,'sequential' => 1, 'name'=> 'Inbound Email'));
+  if ($params["activity_type_id"] != $inbound["value"])
+    return;
+  $hd = civicrm_api('OptionValue', 'getsingle', array ('version' => 3,'sequential' => 1,'name' => 'helpdesk'));
+
+  $params["activity_type_id"] = $hd["value"];
+  $params["status_id"] = 2; //scheduled
+}
+
 /**
  * Implementation of hook_civicrm_config
  */
