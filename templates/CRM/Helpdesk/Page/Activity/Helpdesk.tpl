@@ -1,10 +1,13 @@
 <h3>To DO</h3>
-<table>
+<table id="todo" class="crm-datatable">
+<thead>
 <tr>
 <th>Subject</th>
 <th>Date</th>
 <th></th>
 </tr>
+</thead>
+<tbody>
 {foreach from=$activities.values item="a"}
 <tr>
   <td>{$a.subject}</td>
@@ -17,4 +20,15 @@
 </td>
 </tr>
 {/foreach}
+</tbody>
 </table>
+
+{literal}
+<script>
+cj(function($) {
+    $('#todo').dataTable();
+} );
+
+</script>
+{/literal}
+
