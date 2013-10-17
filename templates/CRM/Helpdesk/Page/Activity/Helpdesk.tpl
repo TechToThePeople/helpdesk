@@ -1,4 +1,3 @@
-{debug}
 <h3>To DO</h3>
 <table id="todo" class="crm-datatable">
 <thead>
@@ -10,13 +9,13 @@
 </thead>
 <tbody>
 {foreach from=$activities.values item="a"}
-<tr id="activity-{$a.id}" data-id="{$a.id}" class="crm-entity">
-  <td><a href="{crmURL p="civicrm/activity?" q="$bla}&atype={$a.activity_type_id}&action=view&reset=1&id={$a.id}&cid={$a.source_contact_id}&context=activity"}">{$a.subject}</a></td>
+<tr id="activity-{$a.id}" data-id="{$a.id}" data-type="activity" class="crm-entity">
+  <td><a href="{crmURL p="civicrm/activity?" q="$bla}&atype={$a.activity_type_id}&action=view&reset=1&id={$a.id}&cid={$a.source_contact_id}&context=activity"}" class="crm-editable crm-dialog">{$a.subject}</a></td>
   <td>{$a.activity_date_time}</td>
   <td>
 <a href="#" class="button button_close">Close</a>
-<a href="{crmURL p="civicrm/activity?" q="$bla}&atype={$a.activity_type_id}&action=update&reset=1&id={$a.id}&cid={$a.source_contact_id}&context=activity"}" class="button button_assign">Assign</a>
-<a href="{crmURL p="civicrm/activity/email/add?" q="$dummy}&atype=3&reset=1&id=&cid={$a.source_contact_id}&context=activity"}" class="button button_reply">Reply</a>
+<a href="{crmURL p="civicrm/activity?" q="$bla}&atype={$a.activity_type_id}&action=update&reset=1&id={$a.id}&cid={$a.source_contact_id}&context=activity"}" class="button button_assign crm-editable crm-dialog">Assign</a>
+<a href="{crmURL p="civicrm/activity/email/add?" q="$dummy}&atype=3&reset=1&id=&cid={$a.source_contact_id}&context=activity"}" class="button button_reply crm-editable crm-dialog">Reply</a>
 </td>
 </tr>
 {/foreach}
@@ -40,4 +39,5 @@ cj(function($) {
 
 </script>
 {/literal}
-
+{include file="CRM/common/wysiwyg.tpl" includeWysiwygEditor=true}
+{include file="CRM/common/crmeditable.tpl"}
