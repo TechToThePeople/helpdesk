@@ -1,3 +1,4 @@
+{debug}
 <h3>To DO</h3>
 <table id="todo" class="crm-datatable">
 <thead>
@@ -9,14 +10,13 @@
 </thead>
 <tbody>
 {foreach from=$activities.values item="a"}
-<tr>
-  <td>{$a.subject}</td>
+<tr id="activity-{$a.id}" data-id="{$a.id}" class="crm-entity">
+  <td><a href="{crmURL p="civicrm/activity?" q="$bla}&atype={$a.activity_type_id}&action=view&reset=1&id={$a.id}&cid={$a.source_contact_id}&context=activity"}">{$a.subject}</a></td>
   <td>{$a.activity_date_time}</td>
   <td>
 <a href="#" class="button button_close">Close</a>
-<a href="#" class="button button_assign">Assign</a>
-<a href="#" class="button button_reply">Reply</a>
- 
+<a href="{crmURL p="civicrm/activity?" q="$bla}&atype={$a.activity_type_id}&action=update&reset=1&id={$a.id}&cid={$a.source_contact_id}&context=activity"}" class="button button_assign">Assign</a>
+<a href="{crmURL p="civicrm/activity/email/add?" q="$dummy}&atype=3&reset=1&id=&cid={$a.source_contact_id}&context=activity"}" class="button button_reply">Reply</a>
 </td>
 </tr>
 {/foreach}
@@ -26,8 +26,17 @@
 {literal}
 <script>
 cj(function($) {
-    $('#todo').dataTable();
-} );
+  $('#todo').dataTable();
+  $('.button_close').click(function(){
+    $tr=$(this).closest("tr");
+    id= $tr.data("id");
+    CRM.api("Activity","create", {activity_status_id:2,id:id,sequential:true},
+      {success:function () {
+         $tr.slideUp("slow");
+      }
+    });
+  }); 
+});
 
 </script>
 {/literal}
